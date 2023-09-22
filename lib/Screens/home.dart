@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:psychologicaltest_flutter_app/Screens/entry_test.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/testList_card.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/weekly_card.dart';
 
@@ -62,7 +63,16 @@ class HomeScreen extends StatelessWidget {
                         itemCount: 5,
                         itemBuilder: (BuildContext context, int index) {
                           var size = MediaQuery.of(context).size.height * 0.25;
-                          return weeklyCard(size, context, index);
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const EntryTestScreen()));
+                            },
+                            child: weeklyCard(size, context, index),
+                          );
                         },
                       ),
                     )

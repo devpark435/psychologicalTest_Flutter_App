@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:psychologicaltest_flutter_app/Screens/entry_test.dart';
 
 Widget weeklyCard(size, context, index) {
   return Padding(
@@ -71,7 +72,13 @@ Widget weeklyCard(size, context, index) {
                                           ),
                                         ),
                                       ),
-                                      onTap: () {},
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const EntryTestScreen()));
+                                      },
                                     ))),
                           )
                         ],
