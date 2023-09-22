@@ -62,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                         itemCount: 5,
                         itemBuilder: (BuildContext context, int index) {
                           var size = MediaQuery.of(context).size.height * 0.25;
-                          return weeklyCard(size, context);
+                          return weeklyCard(size, context, index);
                         },
                       ),
                     )
