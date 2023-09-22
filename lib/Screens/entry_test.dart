@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:psychologicaltest_flutter_app/Screens/psychological_test.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/chips.dart';
 
 class EntryTestScreen extends StatelessWidget {
@@ -99,7 +100,9 @@ class EntryTestScreen extends StatelessWidget {
               ),
             ),
           ),
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, '/test');
+          },
         ));
   }
 }

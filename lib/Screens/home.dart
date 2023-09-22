@@ -65,11 +65,7 @@ class HomeScreen extends StatelessWidget {
                           var size = MediaQuery.of(context).size.height * 0.25;
                           return GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const EntryTestScreen()));
+                              Navigator.pushNamed(context, '/entry');
                             },
                             child: weeklyCard(size, context, index),
                           );
