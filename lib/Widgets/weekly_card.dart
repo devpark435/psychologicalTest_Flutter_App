@@ -83,9 +83,17 @@ Widget weeklyCard(size, context, index) {
                 child: Text(
                   "${index + 1}",
                   style: Theme.of(context).textTheme.displayMedium!.apply(
-                      color: Colors.grey.shade300,
-                      fontStyle: FontStyle.italic,
-                      fontWeightDelta: 3),
+                    color: Colors.white,
+                    fontStyle: FontStyle.italic,
+                    fontWeightDelta: 3,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black.withOpacity(0.5),
+                        offset: const Offset(2, 2),
+                        blurRadius: 4,
+                      ),
+                    ],
+                  ),
                 ))
           ],
         ),
