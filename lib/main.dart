@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:psychologicaltest_flutter_app/Screens/entry_test.dart';
 import 'package:psychologicaltest_flutter_app/Screens/home.dart';
 import 'package:psychologicaltest_flutter_app/Screens/psychological_result.dart';
 import 'package:psychologicaltest_flutter_app/Screens/psychological_test.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeScreen(),
+        '/entry': (context) => const EntryTestScreen(),
         '/test': (context) => const PsychologicalTestScreen(),
         '/result': (context) => const PsychologicalResultScreen(),
       },
