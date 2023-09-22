@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:psychologicaltest_flutter_app/Screens/home.dart';
 
 class PsychologicalResultScreen extends StatelessWidget {
   const PsychologicalResultScreen({super.key});

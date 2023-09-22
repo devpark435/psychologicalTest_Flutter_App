@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:psychologicaltest_flutter_app/Screens/psychological_result.dart';
 import 'package:psychologicaltest_flutter_app/model/Qustion_model.dart';
 
 class PsychologicalTestScreen extends StatefulWidget {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:psychologicaltest_flutter_app/Screens/entry_test.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/testList_card.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/weekly_card.dart';
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:psychologicaltest_flutter_app/Screens/psychological_test.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/chips.dart';
 
 class EntryTestScreen extends StatelessWidget {
