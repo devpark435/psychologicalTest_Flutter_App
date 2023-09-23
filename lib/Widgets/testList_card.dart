@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-Widget testListCard(context) {
+Widget testListCard(context, width) {
+  final size = MediaQuery.of(context).size;
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 20),
     child: Card(
       elevation: 1,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
       child: SizedBox(
-        height: 300,
+        width: width > size.width * .8 ? size.width * .2 : size.width * .9,
         child: Column(
           children: [
             Expanded(
