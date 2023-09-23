@@ -3,9 +3,16 @@ import 'package:psychologicaltest_flutter_app/Screens/entry_test.dart';
 import 'package:psychologicaltest_flutter_app/Screens/home.dart';
 import 'package:psychologicaltest_flutter_app/Screens/psychological_result.dart';
 import 'package:psychologicaltest_flutter_app/Screens/psychological_test.dart';
+import 'package:provider/provider.dart';
+import 'package:psychologicaltest_flutter_app/provider/Quiz_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => QuizProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -23,8 +30,6 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeScreen(),
-        '/entry': (context) => const EntryTestScreen(),
-        '/test': (context) => const PsychologicalTestScreen(),
         '/result': (context) => const PsychologicalResultScreen(),
       },
     );
