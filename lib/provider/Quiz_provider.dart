@@ -23,4 +23,9 @@ class QuizProvider with ChangeNotifier {
 
     notifyListeners(); // UI 업데이트 요청
   }
+
+  void updateViews(int index) {
+    _quizzes[index].view = (_quizzes[index].view! + 1); // 해당 퀴즈의 조회수 증가
+    notifyListeners();
+  }
 }

@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:psychologicaltest_flutter_app/Screens/entry_test.dart';
 
+import '../provider/Quiz_provider.dart';
+
 Widget weeklyCard(size, context, index) {
+  var quizProvider = Provider.of<QuizProvider>(
+    context,
+  );
+
+  final quiz = quizProvider.quizzes[index];
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 20.0),
     child: Card(
@@ -36,7 +44,7 @@ Widget weeklyCard(size, context, index) {
                             flex: 1,
                             child: ListTile(
                               title: Text(
-                                "테스트 이름",
+                                quiz.title,
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleMedium!
@@ -47,48 +55,25 @@ Widget weeklyCard(size, context, index) {
                           Expanded(
                             flex: 1,
                             child: Align(
-                                alignment: Alignment.centerLeft,
-                                child: Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: InkWell(
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            border: Border.all(
-                                                color: Colors.blue.shade300,
-                                                width: 2)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 3.0, horizontal: 5),
-                                          child: Text(
-                                            "심리테스트",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelSmall!
-                                                .apply(
-                                                    color:
-                                                        Colors.blue.shade300),
-                                          ),
-                                        ),
-                                      ),
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const EntryTestScreen()));
-                                      },
-                                    ))),
-                          )
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    right: 20.0, bottom: 10),
+                                child: Text(
+                                  "조회수 ${quiz.view}",
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       )))
             ]),
             Positioned(
-                top: size / 2,
+                top: size / 2 - 10,
                 left: 10,
                 child: Text(
-                  "${index + 1}",
+                  "${quiz.id + 1}",
                   style: Theme.of(context).textTheme.displayMedium!.apply(
                     color: Colors.white,
                     fontStyle: FontStyle.italic,
@@ -101,7 +86,28 @@ Widget weeklyCard(size, context, index) {
                       ),
                     ],
                   ),
-                ))
+                )),
+            Positioned(
+              top: 10,
+              right: 20,
+              child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border:
+                            Border.all(color: Colors.blue.shade300, width: 2)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 3.0, horizontal: 5),
+                      child: Text(
+                        "심리테스트",
+                        style: Theme.of(context).textTheme.labelSmall!.apply(
+                            color: Colors.blue.shade300, fontWeightDelta: 2),
+                      ),
+                    ),
+                  )),
+            )
           ],
         ),
       ),
