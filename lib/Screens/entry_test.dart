@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:psychologicaltest_flutter_app/Screens/psychological_test.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/chips.dart';
+import 'package:psychologicaltest_flutter_app/model/PsychologicalTest_model.dart';
 
 class EntryTestScreen extends StatelessWidget {
-  const EntryTestScreen({super.key});
-
+  const EntryTestScreen({
+    super.key,
+    required this.quizData,
+  });
+  final PsychologicalTestModel quizData;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,15 +19,13 @@ class EntryTestScreen extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 1,
-                  child: Container(
-                    child: Center(
-                      child: Text(
-                        "테스트 이름",
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge!
-                            .apply(fontWeightDelta: 3),
-                      ),
+                  child: Center(
+                    child: Text(
+                      quizData.title,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .apply(fontWeightDelta: 3),
                     ),
                   ),
                 ),
@@ -59,10 +62,8 @@ class EntryTestScreen extends StatelessWidget {
                     spacing: 8.0, // 각 Chip 사이의 공간 설정
                     runSpacing: 4.0, // 각 줄 사이의 공간 설정
                     children: <Widget>[
-                      buildChip('# Flutter'),
-                      buildChip('# Dart'),
-                      buildChip('# OpenAI'),
-                      buildChip('# GPT4'),
+                      for (var i = 0; i < quizData.tag.length; i++)
+                        buildChip(quizData.tag[i]),
                       // 필요한 만큼 Chip 추가 가능...
                     ],
                   ),
@@ -100,7 +101,12 @@ class EntryTestScreen extends StatelessWidget {
             ),
           ),
           onTap: () {
-            Navigator.pushNamed(context, '/test');
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PsychologicalTestScreen(
+                          quizData: quizData,
+                        )));
           },
         ));
   }

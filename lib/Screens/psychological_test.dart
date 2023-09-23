@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:psychologicaltest_flutter_app/model/Qustion_model.dart';
+import 'package:psychologicaltest_flutter_app/model/PsychologicalTest_model.dart';
 
 class PsychologicalTestScreen extends StatefulWidget {
-  const PsychologicalTestScreen({super.key});
+  const PsychologicalTestScreen({super.key, required this.quizData});
+  final PsychologicalTestModel quizData;
 
   @override
   State<PsychologicalTestScreen> createState() =>
@@ -12,15 +13,8 @@ class PsychologicalTestScreen extends StatefulWidget {
 class _PsychologicalTestScreenState extends State<PsychologicalTestScreen> {
   int currentQuestionIndex = 0;
 
-  List<Question> questions = [
-    Question(questionText: '당신은 고양이를 좋아합니까?', choices: ['예', '아니요']),
-    Question(questionText: '당신은 개를 좋아합니까?', choices: ['예', '아니요']),
-    Question(questionText: '당신은 커피를 좋아합니까?', choices: ['예', '아니요']),
-    // 여기에 더 많은 질문 추가 가능...
-  ];
-
   void nextQuestion() {
-    if (currentQuestionIndex < questions.length - 1) {
+    if (currentQuestionIndex < widget.quizData.question.length - 1) {
       setState(() {
         currentQuestionIndex++;
       });
@@ -41,7 +35,8 @@ class _PsychologicalTestScreenState extends State<PsychologicalTestScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Center(
                   child: LinearProgressIndicator(
-                      value: (currentQuestionIndex + 1) / questions.length),
+                      value: (currentQuestionIndex + 1) /
+                          widget.quizData.question.length),
                 ),
               )),
           Expanded(
@@ -50,7 +45,7 @@ class _PsychologicalTestScreenState extends State<PsychologicalTestScreen> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
-                    questions[currentQuestionIndex].questionText,
+                    widget.quizData.question[currentQuestionIndex].questionText,
                     style: Theme.of(context)
                         .textTheme
                         .titleLarge!
@@ -65,51 +60,39 @@ class _PsychologicalTestScreenState extends State<PsychologicalTestScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: InkWell(
-                          onTap: () => nextQuestion(),
-                          customBorder: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                          child: Ink(
-                            width: MediaQuery.of(context).size.width * .5,
-                            height: 30,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.grey.shade200,
-                            ),
-                            child: Center(
-                              child: Text(
-                                  questions[currentQuestionIndex].choices[0],
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium!
-                                      .apply(fontWeightDelta: 3)),
-                            ),
-                          )),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: InkWell(
-                          onTap: () => nextQuestion(),
-                          customBorder: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                          child: Ink(
-                            width: MediaQuery.of(context).size.width * .5,
-                            height: 30,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.grey.shade200,
-                            ),
-                            child: Center(
-                              child: Text(
-                                  questions[currentQuestionIndex].choices[1],
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium!
-                                      .apply(fontWeightDelta: 3)),
-                            ),
-                          )),
+                      child: Column(
+                        children: widget.quizData.question[currentQuestionIndex]
+                            .choices.entries
+                            .map((e) => Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: InkWell(
+                                      onTap: () => nextQuestion(),
+                                      customBorder: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(25),
+                                      ),
+                                      child: Ink(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                .5,
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: Colors.grey.shade200,
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            e.key,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium!
+                                                .apply(fontWeightDelta: 3),
+                                          ),
+                                        ),
+                                      )),
+                                ))
+                            .toList(),
+                      ),
                     ),
                   ],
                 ),
