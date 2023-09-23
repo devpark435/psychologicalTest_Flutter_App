@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:psychologicaltest_flutter_app/Screens/entry_test.dart';
-
 import '../provider/Quiz_provider.dart';
 
 Widget weeklyCard(size, context, index) {
