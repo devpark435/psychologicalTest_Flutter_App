@@ -1,14 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:psychologicaltest_flutter_app/Screens/psychological_test.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/chips.dart';
 import 'package:psychologicaltest_flutter_app/model/PsychologicalTest_model.dart';
 
-class EntryTestScreen extends StatelessWidget {
+class EntryTestScreen extends StatefulWidget {
   const EntryTestScreen({
     super.key,
     required this.quizData,
   });
   final PsychologicalTestModel quizData;
+
+  @override
+  State<EntryTestScreen> createState() => _EntryTestScreenState();
+}
+
+class _EntryTestScreenState extends State<EntryTestScreen>
+    with TickerProviderStateMixin {
+  late List<AnimationController> animationController;
+
+  List<Animation<double>> animations = [];
+
+  @override
+  void initState() {
+    super.initState();
+    animationController = List.generate(
+        5,
+        (index) => AnimationController(
+              duration: const Duration(milliseconds: 1000),
+              vsync: this,
+            )..addListener(() {
+                setState(() {});
+              }));
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (animations.isEmpty) {
+      animations = List.generate(
+          5,
+          (index) =>
+              Tween<double>(begin: MediaQuery.of(context).size.width, end: .0)
+                  .animate(animationController[index]));
+      for (int i = 0; i < animationController.length; i++) {
+        Future.delayed(Duration(milliseconds: i * 500),
+            () => animationController[i].forward());
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    for (var controller in animationController) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,12 +69,15 @@ class EntryTestScreen extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: Center(
-                    child: Text(
-                      quizData.title,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .apply(fontWeightDelta: 3),
+                    child: Transform.translate(
+                      offset: Offset(animations[0].value, 0),
+                      child: Text(
+                        widget.quizData.title,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .apply(fontWeightDelta: 3),
+                      ),
                     ),
                   ),
                 ),
@@ -34,11 +86,14 @@ class EntryTestScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         vertical: 8.0, horizontal: 20),
-                    child: Container(
-                        color: Colors.amber,
-                        child: Center(
-                          child: Text("테스트 이미지 공간"),
-                        )),
+                    child: Transform.translate(
+                      offset: Offset(animations[1].value, 0),
+                      child: Container(
+                          color: Colors.amber,
+                          child: Center(
+                            child: Text("테스트 이미지 공간"),
+                          )),
+                    ),
                   ),
                 ),
                 Expanded(
@@ -46,26 +101,31 @@ class EntryTestScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         vertical: 8.0, horizontal: 20),
-                    child: Container(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "테스트 추가 설명 어쩌고 저쩌고 ..................",
-                          style: Theme.of(context).textTheme.bodyLarge!.apply(
-                              fontWeightDelta: 2, color: Colors.grey.shade700),
-                        )),
+                    child: Transform.translate(
+                      offset: Offset(animations[2].value, 0),
+                      child: Container(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            "테스트 추가 설명 어쩌고 저쩌고 ..................",
+                            style: Theme.of(context).textTheme.bodyLarge!.apply(
+                                fontWeightDelta: 2,
+                                color: Colors.grey.shade700),
+                          )),
+                    ),
                   ),
                 ),
                 Expanded(
                   flex: 1,
-                  child: Wrap(
-                    // Wrap 위젯으로 여러개의 Chip을 한 줄에 표시하고, 자동으로 줄바꿈되도록 합니다.
-                    spacing: 8.0, // 각 Chip 사이의 공간 설정
-                    runSpacing: 4.0, // 각 줄 사이의 공간 설정
-                    children: <Widget>[
-                      for (var i = 0; i < quizData.tag.length; i++)
-                        buildChip(quizData.tag[i]),
-                      // 필요한 만큼 Chip 추가 가능...
-                    ],
+                  child: Transform.translate(
+                    offset: Offset(animations[3].value, 0),
+                    child: Wrap(
+                      spacing: 8.0,
+                      runSpacing: 4.0,
+                      children: <Widget>[
+                        for (var i = 0; i < widget.quizData.tag.length; i++)
+                          buildChip(widget.quizData.tag[i]),
+                      ],
+                    ),
                   ),
                 ),
                 const Expanded(flex: 1, child: SizedBox.expand()),
@@ -74,40 +134,43 @@ class EntryTestScreen extends StatelessWidget {
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: InkWell(
-          customBorder: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(25),
-          ),
-          child: Ink(
-            width: 200,
-            height: 50,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                color: Colors.blueAccent,
-                boxShadow: const [
-                  BoxShadow(
-                      color: Colors.blueAccent,
-                      blurRadius: 5,
-                      offset: Offset(0, 3))
-                ]),
-            child: Center(
-              child: Text(
-                "테스트 시작하기",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge!
-                    .apply(color: Colors.white, fontWeightDelta: 3),
+        floatingActionButton: Transform.translate(
+          offset: Offset(animations[4].value, 0),
+          child: InkWell(
+            customBorder: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: Ink(
+              width: 200,
+              height: 50,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  color: Colors.blueAccent,
+                  boxShadow: const [
+                    BoxShadow(
+                        color: Colors.blueAccent,
+                        blurRadius: 5,
+                        offset: Offset(0, 3))
+                  ]),
+              child: Center(
+                child: Text(
+                  "테스트 시작하기",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .apply(color: Colors.white, fontWeightDelta: 3),
+                ),
               ),
             ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PsychologicalTestScreen(
+                            quizData: widget.quizData,
+                          )));
+            },
           ),
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => PsychologicalTestScreen(
-                          quizData: quizData,
-                        )));
-          },
         ));
   }
 }

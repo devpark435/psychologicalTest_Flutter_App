@@ -10,13 +10,59 @@ class PsychologicalTestScreen extends StatefulWidget {
       _PsychologicalTestScreenState();
 }
 
-class _PsychologicalTestScreenState extends State<PsychologicalTestScreen> {
+class _PsychologicalTestScreenState extends State<PsychologicalTestScreen>
+    with TickerProviderStateMixin {
   int currentQuestionIndex = 0;
+  late List<AnimationController> animationController;
+
+  List<Animation<double>> animations = [];
+
+  @override
+  void initState() {
+    super.initState();
+    animationController = List.generate(
+        3,
+        (index) => AnimationController(
+              duration: const Duration(milliseconds: 1000),
+              vsync: this,
+            )..addListener(() {
+                setState(() {});
+              }));
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (animations.isEmpty) {
+      animations = List.generate(
+          3,
+          (index) =>
+              Tween<double>(begin: MediaQuery.of(context).size.width, end: .0)
+                  .animate(animationController[index]));
+      for (int i = 0; i < animationController.length; i++) {
+        Future.delayed(Duration(milliseconds: i * 500),
+            () => animationController[i].forward());
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    for (var controller in animationController) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
 
   void nextQuestion() {
     if (currentQuestionIndex < widget.quizData.question.length - 1) {
       setState(() {
         currentQuestionIndex++;
+        for (int i = 0; i < animationController.length; i++) {
+          animationController[i].reset();
+          Future.delayed(Duration(milliseconds: i * 500),
+              () => animationController[i].forward());
+        }
       });
     } else {
       Navigator.pushNamed(context, '/result');
@@ -44,12 +90,16 @@ class _PsychologicalTestScreenState extends State<PsychologicalTestScreen> {
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Text(
-                    widget.quizData.question[currentQuestionIndex].questionText,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .apply(fontWeightDelta: 5),
+                  child: Transform.translate(
+                    offset: Offset(animations[0].value, 0),
+                    child: Text(
+                      widget
+                          .quizData.question[currentQuestionIndex].questionText,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .apply(fontWeightDelta: 5),
+                    ),
                   ),
                 ),
               )),
@@ -63,8 +113,14 @@ class _PsychologicalTestScreenState extends State<PsychologicalTestScreen> {
                       child: Column(
                         children: widget.quizData.question[currentQuestionIndex]
                             .choices.entries
+                            .toList()
+                            .asMap()
+                            .entries
                             .map((e) => Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Transform.translate(
+                                  offset:
+                                      Offset(animations[e.key + 1].value, 0),
                                   child: InkWell(
                                       onTap: () => nextQuestion(),
                                       customBorder: RoundedRectangleBorder(
@@ -82,7 +138,7 @@ class _PsychologicalTestScreenState extends State<PsychologicalTestScreen> {
                                         ),
                                         child: Center(
                                           child: Text(
-                                            e.key,
+                                            e.value.key,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleMedium!
@@ -90,7 +146,7 @@ class _PsychologicalTestScreenState extends State<PsychologicalTestScreen> {
                                           ),
                                         ),
                                       )),
-                                ))
+                                )))
                             .toList(),
                       ),
                     ),
