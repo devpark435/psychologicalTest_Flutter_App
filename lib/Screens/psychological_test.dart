@@ -130,11 +130,13 @@ class _PsychologicalTestScreenState extends State<PsychologicalTestScreen>
                                         width:
                                             MediaQuery.of(context).size.width *
                                                 .5,
-                                        height: 30,
+                                        height: 50,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10),
-                                          color: Colors.grey.shade200,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primaryContainer,
                                         ),
                                         child: Center(
                                           child: Text(
