@@ -23,7 +23,7 @@ class _PsychologicalTestScreenState extends State<PsychologicalTestScreen>
     animationController = List.generate(
         3,
         (index) => AnimationController(
-              duration: const Duration(milliseconds: 1000),
+              duration: const Duration(milliseconds: 500),
               vsync: this,
             )..addListener(() {
                 setState(() {});
@@ -40,7 +40,7 @@ class _PsychologicalTestScreenState extends State<PsychologicalTestScreen>
               Tween<double>(begin: MediaQuery.of(context).size.width, end: .0)
                   .animate(animationController[index]));
       for (int i = 0; i < animationController.length; i++) {
-        Future.delayed(Duration(milliseconds: i * 500),
+        Future.delayed(Duration(milliseconds: i * 300),
             () => animationController[i].forward());
       }
     }
@@ -60,7 +60,7 @@ class _PsychologicalTestScreenState extends State<PsychologicalTestScreen>
         currentQuestionIndex++;
         for (int i = 0; i < animationController.length; i++) {
           animationController[i].reset();
-          Future.delayed(Duration(milliseconds: i * 500),
+          Future.delayed(Duration(milliseconds: i * 300),
               () => animationController[i].forward());
         }
       });
