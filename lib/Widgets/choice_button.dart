@@ -23,7 +23,7 @@ class _ChoiceButtonState extends State<ChoiceButton> {
         });
       },
       onTapUp: (details) async {
-        await Future.delayed(const Duration(milliseconds: 200));
+        await Future.delayed(const Duration(milliseconds: 500));
         setState(() {
           isTapped = false;
         });

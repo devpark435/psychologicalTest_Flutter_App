@@ -27,7 +27,7 @@ class _EntryTestScreenState extends State<EntryTestScreen>
     animationController = List.generate(
         5,
         (index) => AnimationController(
-              duration: const Duration(milliseconds: 1000),
+              duration: const Duration(milliseconds: 500),
               vsync: this,
             )..addListener(() {
                 setState(() {});
@@ -39,12 +39,12 @@ class _EntryTestScreenState extends State<EntryTestScreen>
     super.didChangeDependencies();
     if (animations.isEmpty) {
       animations = List.generate(
-          5,
+          4,
           (index) =>
               Tween<double>(begin: MediaQuery.of(context).size.width, end: .0)
                   .animate(animationController[index]));
       for (int i = 0; i < animationController.length; i++) {
-        Future.delayed(Duration(milliseconds: i * 500),
+        Future.delayed(Duration(milliseconds: i * 300),
             () => animationController[i].forward());
       }
     }
@@ -97,27 +97,9 @@ class _EntryTestScreenState extends State<EntryTestScreen>
                   ),
                 ),
                 Expanded(
-                  flex: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 20),
-                    child: Transform.translate(
-                      offset: Offset(animations[2].value, 0),
-                      child: Container(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            "테스트 추가 설명 어쩌고 저쩌고 ..................",
-                            style: Theme.of(context).textTheme.bodyLarge!.apply(
-                                fontWeightDelta: 2,
-                                color: Colors.grey.shade700),
-                          )),
-                    ),
-                  ),
-                ),
-                Expanded(
                   flex: 1,
                   child: Transform.translate(
-                    offset: Offset(animations[3].value, 0),
+                    offset: Offset(animations[2].value, 0),
                     child: Wrap(
                       spacing: 8.0,
                       runSpacing: 4.0,
@@ -135,7 +117,7 @@ class _EntryTestScreenState extends State<EntryTestScreen>
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: Transform.translate(
-          offset: Offset(animations[4].value, 0),
+          offset: Offset(animations[3].value, 0),
           child: InkWell(
             customBorder: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(25),
