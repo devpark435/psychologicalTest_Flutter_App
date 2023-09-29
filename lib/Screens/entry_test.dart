@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:psychologicaltest_flutter_app/Screens/psychological_test.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/chips.dart';
 import 'package:psychologicaltest_flutter_app/model/PsychologicalTest_model.dart';
