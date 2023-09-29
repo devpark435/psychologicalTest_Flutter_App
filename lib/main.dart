@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:psychologicaltest_flutter_app/Screens/entry_test.dart';
 import 'package:psychologicaltest_flutter_app/Screens/home.dart';
-import 'package:psychologicaltest_flutter_app/Screens/psychological_result.dart';
 import 'package:provider/provider.dart';
 import 'package:psychologicaltest_flutter_app/provider/Quiz_provider.dart';
 
@@ -29,7 +27,6 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeScreen(),
-        '/result': (context) => const PsychologicalResultScreen(),
       },
     );
   }
