@@ -1,3 +1,5 @@
+import 'package:psychologicaltest_flutter_app/model/Result_model.dart';
+
 class PsychologicalTestModel {
   final int id;
   final String title;
@@ -5,6 +7,7 @@ class PsychologicalTestModel {
   final String imagePath;
   int? view;
   final List<Question> question;
+  final List<Result> results;
 
   PsychologicalTestModel(
       {required this.id,
@@ -12,7 +15,8 @@ class PsychologicalTestModel {
       required this.tag,
       required this.view,
       required this.imagePath,
-      required this.question});
+      required this.question,
+      required this.results});
 
   factory PsychologicalTestModel.fromJson(Map<String, dynamic> json) {
     return PsychologicalTestModel(
@@ -23,6 +27,7 @@ class PsychologicalTestModel {
       imagePath: json['imagePath'],
       question:
           (json['question'] as List).map((i) => Question.fromJson(i)).toList(),
+      results: (json['result'] as List).map((i) => Result.fromJson(i)).toList(),
     );
   }
 }
