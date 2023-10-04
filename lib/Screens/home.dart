@@ -6,9 +6,16 @@ import 'package:psychologicaltest_flutter_app/Widgets/search.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/testList_card.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/weekly_card.dart';
 import 'package:psychologicaltest_flutter_app/provider/Quiz_provider.dart';
+import 'dart:html' as html;
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+  bool get isMobileDevice {
+    var userAgent = html.window.navigator.userAgent;
+    return userAgent.contains('Mobile') ||
+        userAgent.contains('Android') ||
+        userAgent.contains('iPhone');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +25,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: false,
         title: Text(
-          'Title',
+          isMobileDevice ? 'Mobile Web' : 'Web',
           style: Theme.of(context)
               .textTheme
               .headlineLarge!
