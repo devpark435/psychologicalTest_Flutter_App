@@ -2,20 +2,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:psychologicaltest_flutter_app/Screens/entry_test.dart';
+import 'package:psychologicaltest_flutter_app/Widgets/device_checker.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/search.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/testList_card.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/weekly_card.dart';
 import 'package:psychologicaltest_flutter_app/provider/Quiz_provider.dart';
-import 'dart:html' as html;
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-  bool get isMobileDevice {
-    var userAgent = html.window.navigator.userAgent;
-    return userAgent.contains('Mobile') ||
-        userAgent.contains('Android') ||
-        userAgent.contains('iPhone');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +19,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: false,
         title: Text(
-          isMobileDevice ? 'Mobile Web' : 'Web',
+          DeviceChecker().isMobileDevice ? 'Mobile Web' : 'Web',
           style: Theme.of(context)
               .textTheme
               .headlineLarge!
@@ -128,12 +122,12 @@ class HomeScreen extends StatelessWidget {
                                       const Divider(),
                               itemBuilder: (BuildContext context, int index) {
                                 return SizedBox(
-                                    width: 300,
-                                    // size.width > 400 ? 400 : size.width * .9,
-                                    height: 300,
-                                    // size.height > 900
-                                    //     ? 400
-                                    //     : size.height * .3,
+                                    width: size.width > 400
+                                        ? 400
+                                        : size.width * .9,
+                                    height: size.height > 900
+                                        ? 400
+                                        : size.height * .3,
                                     child: testListCard(context, size.width));
                               },
                             ),
