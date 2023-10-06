@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:psychologicaltest_flutter_app/Widgets/device_checker.dart';
 import '../provider/Quiz_provider.dart';
 
 Widget weeklyCard(size, context, index) {
@@ -22,9 +23,11 @@ Widget weeklyCard(size, context, index) {
               Expanded(
                   flex: 2,
                   child: Container(
-                    decoration: const BoxDecoration(
-                        color: Colors.amber,
-                        borderRadius: BorderRadius.only(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(quiz.imagePath),
+                            fit: BoxFit.fill),
+                        borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(25),
                             topRight: Radius.circular(25))),
                   )),
@@ -68,7 +71,9 @@ Widget weeklyCard(size, context, index) {
                       )))
             ]),
             Positioned(
-                top: size / 2 - 10,
+                top: DeviceChecker().isMobileDevice
+                    ? size / 2 - 10
+                    : size / 2 + 20,
                 left: 10,
                 child: Text(
                   "${quiz.id + 1}",
