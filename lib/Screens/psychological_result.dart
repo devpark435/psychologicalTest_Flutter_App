@@ -18,41 +18,43 @@ class PsychologicalResultScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              // Padding(
+              //   padding: const EdgeInsets.all(10.0),
+              //   child: Text(
+              //     result.title,
+              //     style: Theme.of(context)
+              //         .textTheme
+              //         .titleLarge!
+              //         .apply(fontWeightDelta: 5),
+              //   ),
+              // ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text(
-                  result.title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleLarge!
-                      .apply(fontWeightDelta: 5),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text(
-                  result.content,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .apply(fontWeightDelta: 3),
-                ),
-              ),
-              kIsWeb
-                  ? Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text("share"),
-                      ))
-                  : Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Share.share('https://www.example.com');
-                        },
-                        child: Text("share"),
-                      )),
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    // width: MediaQuery.of(context).size.width*.5,
+                    height: MediaQuery.of(context).size.height * .5,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(result.imagePath),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )),
+              // kIsWeb
+              //     ? Padding(
+              //         padding: const EdgeInsets.all(10.0),
+              //         child: ElevatedButton(
+              //           onPressed: () {},
+              //           child: Text("share"),
+              //         ))
+              //     : Padding(
+              //         padding: const EdgeInsets.all(10.0),
+              //         child: ElevatedButton(
+              //           onPressed: () {
+              //             Share.share('https://www.example.com');
+              //           },
+              //           child: Text("share"),
+              //         )),
             ],
           ),
         )),
