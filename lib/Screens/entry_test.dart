@@ -88,10 +88,13 @@ class _EntryTestScreenState extends State<EntryTestScreen>
                     child: Transform.translate(
                       offset: Offset(animations[1].value, 0),
                       child: Container(
-                          color: Colors.amber,
-                          child: Center(
-                            child: Text("테스트 이미지 공간"),
-                          )),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(widget.quizData.imagePath),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
