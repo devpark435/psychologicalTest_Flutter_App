@@ -79,8 +79,9 @@ class HomeScreen extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.25,
+                                height: DeviceChecker().isMobileDevice
+                                    ? size.height * 0.25
+                                    : size.height * 0.3,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
                                   itemCount: quizProvider.quizzes.length,
