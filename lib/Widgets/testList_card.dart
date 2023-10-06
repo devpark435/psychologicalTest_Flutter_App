@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-Widget testListCard(context, width) {
+Widget testListCard(
+  context,
+  width,
+) {
   final size = MediaQuery.of(context).size;
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 20),
