@@ -51,12 +51,15 @@ class _ChoiceButtonState extends State<ChoiceButton> {
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Text(widget.answerText,
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium!
-                            .apply(fontWeightDelta: 3)),
+                    child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: Text(widget.answerText,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .apply(fontWeightDelta: 3)),
+                    ),
                   ),
                 ))),
       ),
