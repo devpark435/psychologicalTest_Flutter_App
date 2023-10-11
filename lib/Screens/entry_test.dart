@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:psychologicaltest_flutter_app/Screens/psychological_test.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/chips.dart';
+import 'package:psychologicaltest_flutter_app/Widgets/device_checker.dart';
 import 'package:psychologicaltest_flutter_app/model/PsychologicalTest_model.dart';
 
 class EntryTestScreen extends StatefulWidget {
@@ -63,57 +64,67 @@ class _EntryTestScreenState extends State<EntryTestScreen>
         body: SafeArea(
           child: SizedBox(
             width: double.infinity,
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Center(
-                    child: Transform.translate(
-                      offset: Offset(animations[0].value, 0),
-                      child: Text(
-                        widget.quizData.title,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge!
-                            .apply(fontWeightDelta: 3),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 20),
-                    child: Transform.translate(
-                      offset: Offset(animations[1].value, 0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(widget.quizData.imagePath),
-                            fit: BoxFit.cover,
+            height: DeviceChecker().isMobileDevice ? double.infinity : 1080,
+            child: Center(
+              child: SizedBox(
+                width: DeviceChecker().isMobileDevice
+                    ? double.infinity
+                    : MediaQuery.of(context).size.width * .7,
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Center(
+                        child: Transform.translate(
+                          offset: Offset(animations[0].value, 0),
+                          child: Text(
+                            widget.quizData.title,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .apply(fontWeightDelta: 3),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Transform.translate(
-                    offset: Offset(animations[2].value, 0),
-                    child: Wrap(
-                      spacing: 8.0,
-                      runSpacing: 4.0,
-                      children: <Widget>[
-                        for (var i = 0; i < widget.quizData.tag.length; i++)
-                          buildChip(widget.quizData.tag[i]),
-                      ],
+                    Expanded(
+                      flex: 3,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 20),
+                        child: Transform.translate(
+                          offset: Offset(animations[1].value, 0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(widget.quizData.imagePath),
+                                fit: DeviceChecker().isMobileDevice
+                                    ? BoxFit.cover
+                                    : BoxFit.fitHeight,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
+                    Expanded(
+                      flex: 1,
+                      child: Transform.translate(
+                        offset: Offset(animations[2].value, 0),
+                        child: Wrap(
+                          spacing: 8.0,
+                          runSpacing: 4.0,
+                          children: <Widget>[
+                            for (var i = 0; i < widget.quizData.tag.length; i++)
+                              buildChip(widget.quizData.tag[i]),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const Expanded(flex: 1, child: SizedBox.expand()),
+                  ],
                 ),
-                const Expanded(flex: 1, child: SizedBox.expand()),
-              ],
+              ),
             ),
           ),
         ),

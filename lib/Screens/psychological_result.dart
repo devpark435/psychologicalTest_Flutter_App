@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:psychologicaltest_flutter_app/Widgets/device_checker.dart';
 import 'package:psychologicaltest_flutter_app/model/Result_model.dart';
 import 'package:share/share.dart';
 
@@ -12,7 +13,9 @@ class PsychologicalResultScreen extends StatelessWidget {
     return Scaffold(
         body: SafeArea(
             child: SizedBox(
-          width: double.infinity,
+          width: DeviceChecker().isMobileDevice
+              ? MediaQuery.of(context).size.width / 2
+              : double.infinity,
           height: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
