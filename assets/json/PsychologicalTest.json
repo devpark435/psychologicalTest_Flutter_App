@@ -522,7 +522,7 @@
                 "2"
             ],
             "view": 0,
-            "imagePath": "images/thanks_main.jpeg",
+            "imagePath": "images/koreanCat_main.jpeg",
             "question": [
                 {
                     "questionText": "눈을 떠보니 낯선 공간이다.",
@@ -614,25 +614,25 @@
                 {
                     "title": "삼색이",
                     "content": "당신은 혼자 있는 게 좋은 삼색이입니다 내성적이고 다소 예민한 성격이네요. 건들면 물어요. 다가오는 사람들에게 쉬이 곁을 내어주지 않습니다. 마음의 문이 열리게 살짝 조금씩 노크를 해주며 서서히 다가오는 사람을 선호합니다.",
-                    "imagePath" : "images/thanks_result1.jpeg",
+                    "imagePath" : "images/koreanCat_result1.jpeg",
                     "scoreRange" : [120,159]
                 },
                 {
                     "title": "고등어",
                     "content": "당신은 물음표 냥이 고등어입니다. 세상만사에 호기심이 많고 운동 신경이 뛰어납니다. 호기심 천국으로 탐구력이 높지만 경계심 역시 높은 프로 밀당러입니다.",
-                    "imagePath" : "images/thanks_result2.jpeg",
+                    "imagePath" : "images/koreanCat_result2.jpeg",
                     "scoreRange" : [160,199]
                 },
                 {
                     "title": "올블랙",
                     "content": "당신은 적응력 갑 올블랙입니다경계심이 적어서 어디서든 잘 살아남을 수 있어요.적응력이 높지만 차분하고 조용한 성격을 가졌어요.머리도 좋은 편이라 아마 낯선 공간에 떨어져도 어떻게든 살아남을 수 있을 거예요",
-                    "imagePath" : "images/thanks_result3.jpeg",
+                    "imagePath" : "images/koreanCat_result3.jpeg",
                     "scoreRange" : [200,229]
                 },
                 {
                     "title": "치즈",
                     "content": "당신은 핵인싸 치즈입니다. 외향적인 성격으로 사람들과 잘 어울리고 노는 걸 좋아합니다. 딱히 미움 사지도 않고 사람들에게 이쁨 받는 방법을 잘 알고 있어요.분위기 메이커 그 자체입니다.",
-                    "imagePath" : "images/thanks_result4.jpeg",
+                    "imagePath" : "images/koreanCat_result4.jpeg",
                     "scoreRange" : [230,500]
                 }
                 ]
@@ -645,7 +645,7 @@
                 "2"
             ],
             "view": 0,
-            "imagePath": "images/thanks_main.jpeg",
+            "imagePath": "images/kimchi_main.jpeg",
             "question": [
                 {
                     "questionText": "꿀같은 휴일, 무엇을 할까?",
@@ -722,26 +722,32 @@
                 {
                     "title": "신선하고 상큼한 겉절이",
                     "content": "재미있는 일을 찾고 싶어요. 만사가 귀찮고 굳이 무언가를 할 필요성을 크게 느끼지 않아요.무덤덤해서 혼자서도 잘 놀고 인간 관계를 여의치 않아요.있다가도 없고 없다가도 있는 게 사람이에요.기본적으로 사람은 좋아하지만 의도치 않게 다른 사람들을 상처주기도 해요.",
-                    "imagePath" : "images/thanks_result1.jpeg",
+                    "imagePath" : "images/kimchi_result1.jpeg",
                     "scoreRange" : [100,119]
                 },
                 {
                     "title": "시원하고 깔끔한 백김치",
                     "content": "당신은 물음표 냥이 고등어입니다. 세상만사에 호기심이 많고 운동 신경이 뛰어납니다. 호기심 천국으로 탐구력이 높지만 경계심 역시 높은 프로 밀당러입니다.",
-                    "imagePath" : "images/thanks_result2.jpeg",
+                    "imagePath" : "images/kimchi_result2.jpeg",
                     "scoreRange" : [120,139]
                 },
                 {
                     "title": "매콤하고 짭짤한 총각김치",
                     "content": "당신은 적응력 갑 올블랙입니다경계심이 적어서 어디서든 잘 살아남을 수 있어요.적응력이 높지만 차분하고 조용한 성격을 가졌어요.머리도 좋은 편이라 아마 낯선 공간에 떨어져도 어떻게든 살아남을 수 있을 거예요",
-                    "imagePath" : "images/thanks_result3.jpeg",
+                    "imagePath" : "images/kimchi_result3.jpeg",
                     "scoreRange" : [140,159]
                 },
                 {
                     "title": "아삭하고 톡 쏘는 깍두기",
                     "content": "당신은 핵인싸 치즈입니다. 외향적인 성격으로 사람들과 잘 어울리고 노는 걸 좋아합니다. 딱히 미움 사지도 않고 사람들에게 이쁨 받는 방법을 잘 알고 있어요.분위기 메이커 그 자체입니다.",
-                    "imagePath" : "images/thanks_result4.jpeg",
-                    "scoreRange" : [160,500]
+                    "imagePath" : "images/kimchi_result4.jpeg",
+                    "scoreRange" : [160,179]
+                },
+                {
+                    "title": "감칠맛이 일품인 배추김치",
+                    "content": "당신은 핵인싸 치즈입니다. 외향적인 성격으로 사람들과 잘 어울리고 노는 걸 좋아합니다. 딱히 미움 사지도 않고 사람들에게 이쁨 받는 방법을 잘 알고 있어요.분위기 메이커 그 자체입니다.",
+                    "imagePath" : "images/kimchi_result4.jpeg",
+                    "scoreRange" : [180,500]
                 }
                 ]
         },
@@ -753,7 +759,7 @@
                 "2"
             ],
             "view": 0,
-            "imagePath": "images/thanks_main.jpeg",
+            "imagePath": "images/trip_main.jpeg",
             "question": [
                 {
                     "questionText": "바쁜 일상 끝, 오랜만에 여행을 떠나기로 했다. 기간은 며칠이 좋을까?",
@@ -837,27 +843,34 @@
                 {
                     "title": "자연과 함께하는 여행지, 남해",
                     "content": "재미있는 일을 찾고 싶어요. 만사가 귀찮고 굳이 무언가를 할 필요성을 크게 느끼지 않아요.무덤덤해서 혼자서도 잘 놀고 인간 관계를 여의치 않아요.있다가도 없고 없다가도 있는 게 사람이에요.기본적으로 사람은 좋아하지만 의도치 않게 다른 사람들을 상처주기도 해요.",
-                    "imagePath" : "images/thanks_result1.jpeg",
+                    "imagePath" : "images/trip_result1.jpeg",
                     "scoreRange" : [-7,9]
                 },
                 {
                     "title": "액티비티와 함께하는 여행지, 화성 ~ 용인",
                     "content": "당신은 물음표 냥이 고등어입니다. 세상만사에 호기심이 많고 운동 신경이 뛰어납니다. 호기심 천국으로 탐구력이 높지만 경계심 역시 높은 프로 밀당러입니다.",
-                    "imagePath" : "images/thanks_result2.jpeg",
+                    "imagePath" : "images/trip_result2.jpeg",
                     "scoreRange" : [10,19]
                 },
                 {
                     "title": "식도락이 있는 여행지, 여수",
                     "content": "당신은 적응력 갑 올블랙입니다경계심이 적어서 어디서든 잘 살아남을 수 있어요.적응력이 높지만 차분하고 조용한 성격을 가졌어요.머리도 좋은 편이라 아마 낯선 공간에 떨어져도 어떻게든 살아남을 수 있을 거예요",
-                    "imagePath" : "images/thanks_result3.jpeg",
+                    "imagePath" : "images/trip_result3.jpeg",
                     "scoreRange" : [20,29]
                 },
                 {
                     "title": "도심 속에서 힐링을 찾는 여행지, 서울",
                     "content": "당신은 핵인싸 치즈입니다. 외향적인 성격으로 사람들과 잘 어울리고 노는 걸 좋아합니다. 딱히 미움 사지도 않고 사람들에게 이쁨 받는 방법을 잘 알고 있어요.분위기 메이커 그 자체입니다.",
-                    "imagePath" : "images/thanks_result4.jpeg",
-                    "scoreRange" : [30,40]
+                    "imagePath" : "images/trip_result4.jpeg",
+                    "scoreRange" : [30,39]
+                },
+                {
+                    "title": "북적북적 이야기가 있는 여행지, 제주도",
+                    "content": "당신은 핵인싸 치즈입니다. 외향적인 성격으로 사람들과 잘 어울리고 노는 걸 좋아합니다. 딱히 미움 사지도 않고 사람들에게 이쁨 받는 방법을 잘 알고 있어요.분위기 메이커 그 자체입니다.",
+                    "imagePath" : "images/trip_result5.jpeg",
+                    "scoreRange" : [40,100]
                 }
+                
                 ]
         }                
     ]
