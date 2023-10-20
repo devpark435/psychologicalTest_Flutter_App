@@ -95,13 +95,11 @@ class _EntryTestScreenState extends State<EntryTestScreen>
                         child: Transform.translate(
                           offset: Offset(animations[1].value, 0),
                           child: Container(
+                            width: 500,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage(widget.quizData.imagePath),
-                                fit: DeviceChecker().isMobileDevice
-                                    ? BoxFit.cover
-                                    : BoxFit.fitHeight,
-                              ),
+                                  image: AssetImage(widget.quizData.imagePath),
+                                  fit: BoxFit.fitWidth),
                             ),
                           ),
                         ),
