@@ -3,7 +3,6 @@ import 'package:psychologicaltest_flutter_app/Screens/psychological_result.dart'
 import 'package:psychologicaltest_flutter_app/Widgets/choice_button.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/device_checker.dart';
 import 'package:psychologicaltest_flutter_app/model/PsychologicalTest_model.dart';
-import 'package:psychologicaltest_flutter_app/model/Result_model.dart';
 
 class PsychologicalTestScreen extends StatefulWidget {
   const PsychologicalTestScreen({super.key, required this.quizData});
@@ -60,17 +59,15 @@ class _PsychologicalTestScreenState extends State<PsychologicalTestScreen>
   }
 
   void navigateBasedOnScore(int score) {
-    Result selectedResult;
-    if (score >= 260) {
-      selectedResult = widget.quizData.results[4];
-    } else if (score >= 240) {
-      selectedResult = widget.quizData.results[3];
-    } else if (score >= 210) {
-      selectedResult = widget.quizData.results[2];
-    } else if (score >= 180) {
-      selectedResult = widget.quizData.results[1];
-    } else {
-      selectedResult = widget.quizData.results[0];
+    Result selectedResult = widget.quizData.result[0];
+
+    for (var result in widget.quizData.result) {
+      List<int> scoreRange = List<int>.from(result.scoreRange);
+      if (score >= scoreRange[0] && score <= scoreRange[1]) {
+        selectedResult = result;
+        debugPrint("$score $scoreRange");
+        break;
+      }
     }
     Navigator.push(
         context,
