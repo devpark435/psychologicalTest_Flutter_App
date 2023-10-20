@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/device_checker.dart';
-import 'package:psychologicaltest_flutter_app/model/Result_model.dart';
+import 'package:psychologicaltest_flutter_app/model/PsychologicalTest_model.dart';
 import 'package:share/share.dart';
 
 class PsychologicalResultScreen extends StatelessWidget {
@@ -12,53 +12,65 @@ class PsychologicalResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-            child: SizedBox(
-          width: DeviceChecker().isMobileDevice
-              ? MediaQuery.of(context).size.width / 2
-              : double.infinity,
-          height: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // Padding(
-              //   padding: const EdgeInsets.all(10.0),
-              //   child: Text(
-              //     result.title,
-              //     style: Theme.of(context)
-              //         .textTheme
-              //         .titleLarge!
-              //         .apply(fontWeightDelta: 5),
-              //   ),
-              // ),
-              Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    // width: MediaQuery.of(context).size.width*.5,
-                    height: MediaQuery.of(context).size.height * .5,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(result.imagePath),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  )),
-              // kIsWeb
-              //     ? Padding(
-              //         padding: const EdgeInsets.all(10.0),
-              //         child: ElevatedButton(
-              //           onPressed: () {},
-              //           child: Text("share"),
-              //         ))
-              //     : Padding(
-              //         padding: const EdgeInsets.all(10.0),
-              //         child: ElevatedButton(
-              //           onPressed: () {
-              //             Share.share('https://www.example.com');
-              //           },
-              //           child: Text("share"),
-              //         )),
-            ],
+            child: Center(
+          child: SizedBox(
+            width: DeviceChecker().isMobileDevice
+                ? MediaQuery.of(context).size.width * 0.9
+                : MediaQuery.of(context).size.width / 2,
+            height: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // Padding(
+                //   padding: const EdgeInsets.all(10.0),
+                //   child: Text(
+                //     result.title,
+                //     style: Theme.of(context)
+                //         .textTheme
+                //         .titleLarge!
+                //         .apply(fontWeightDelta: 5),
+                //   ),
+                // ),
+                Expanded(flex: 1, child: SizedBox.expand()),
+
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        width: DeviceChecker().isMobileDevice
+                            ? MediaQuery.of(context).size.width * .9
+                            : 500,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(result.imagePath),
+                              fit: BoxFit.fitWidth
+                              // DeviceChecker().isMobileDevice
+                              //     ? BoxFit.fitWidth
+                              //     : BoxFit.cover,
+                              ),
+                        ),
+                      )),
+                ),
+                Expanded(flex: 1, child: SizedBox.expand()),
+                // kIsWeb
+                //     ? Padding(
+                //         padding: const EdgeInsets.all(10.0),
+                //         child: ElevatedButton(
+                //           onPressed: () {},
+                //           child: Text("share"),
+                //         ))
+                //     : Padding(
+                //         padding: const EdgeInsets.all(10.0),
+                //         child: ElevatedButton(
+                //           onPressed: () {
+                //             Share.share('https://www.example.com');
+                //           },
+                //           child: Text("share"),
+                //         )),
+              ],
+            ),
           ),
         )),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
