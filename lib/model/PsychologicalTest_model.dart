@@ -1,13 +1,11 @@
-import 'package:psychologicaltest_flutter_app/model/Result_model.dart';
-
 class PsychologicalTestModel {
   final int id;
   final String title;
   final List<String> tag;
+  final int view;
   final String imagePath;
-  int? view;
   final List<Question> question;
-  final List<Result> results;
+  final List<Result> result;
 
   PsychologicalTestModel(
       {required this.id,
@@ -16,7 +14,7 @@ class PsychologicalTestModel {
       required this.view,
       required this.imagePath,
       required this.question,
-      required this.results});
+      required this.result});
 
   factory PsychologicalTestModel.fromJson(Map<String, dynamic> json) {
     return PsychologicalTestModel(
@@ -27,7 +25,7 @@ class PsychologicalTestModel {
       imagePath: json['imagePath'],
       question:
           (json['question'] as List).map((i) => Question.fromJson(i)).toList(),
-      results: (json['result'] as List).map((i) => Result.fromJson(i)).toList(),
+      result: (json['result'] as List).map((i) => Result.fromJson(i)).toList(),
     );
   }
 }
@@ -42,6 +40,28 @@ class Question {
     return Question(
       questionText: json['questionText'],
       choices: Map<String, int>.from(json['choices']),
+    );
+  }
+}
+
+class Result {
+  final String title;
+  final String content;
+  final String imagePath;
+  final List<int> scoreRange;
+
+  Result(
+      {required this.title,
+      required this.content,
+      required this.imagePath,
+      required this.scoreRange});
+
+  factory Result.fromJson(Map<String, dynamic> parsedJson) {
+    return Result(
+      title: parsedJson["title"],
+      content: parsedJson["content"],
+      imagePath: parsedJson["imagePath"],
+      scoreRange: new List<int>.from(parsedJson["scoreRange"]),
     );
   }
 }

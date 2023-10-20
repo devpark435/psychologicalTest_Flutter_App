@@ -22,10 +22,11 @@ class QuizProvider with ChangeNotifier {
         .toList();
 
     notifyListeners(); // UI 업데이트 요청
+    debugPrint("quiz Data Load");
   }
 
-  void updateViews(int index) {
-    _quizzes[index].view = (_quizzes[index].view! + 1); // 해당 퀴즈의 조회수 증가
-    notifyListeners();
-  }
+  // void updateViews(int index) {
+  //   _quizzes[index].view = (_quizzes[index].view+ 1); // 해당 퀴즈의 조회수 증가
+  //   notifyListeners();
+  // }
 }
