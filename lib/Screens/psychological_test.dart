@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:psychologicaltest_flutter_app/Screens/psychological_result.dart';
+import 'package:psychologicaltest_flutter_app/Widgets/choice_button.dart';
+import 'package:psychologicaltest_flutter_app/Widgets/device_checker.dart';
 import 'package:psychologicaltest_flutter_app/model/PsychologicalTest_model.dart';
 
 class PsychologicalTestScreen extends StatefulWidget {
@@ -12,6 +15,7 @@ class PsychologicalTestScreen extends StatefulWidget {
 
 class _PsychologicalTestScreenState extends State<PsychologicalTestScreen>
     with TickerProviderStateMixin {
+  int totalScore = 0;
   int currentQuestionIndex = 0;
   late List<AnimationController> animationController;
 
@@ -23,7 +27,7 @@ class _PsychologicalTestScreenState extends State<PsychologicalTestScreen>
     animationController = List.generate(
         3,
         (index) => AnimationController(
-              duration: const Duration(milliseconds: 1000),
+              duration: const Duration(milliseconds: 500),
               vsync: this,
             )..addListener(() {
                 setState(() {});
@@ -40,7 +44,7 @@ class _PsychologicalTestScreenState extends State<PsychologicalTestScreen>
               Tween<double>(begin: MediaQuery.of(context).size.width, end: .0)
                   .animate(animationController[index]));
       for (int i = 0; i < animationController.length; i++) {
-        Future.delayed(Duration(milliseconds: i * 500),
+        Future.delayed(Duration(milliseconds: i * 300),
             () => animationController[i].forward());
       }
     }
@@ -54,106 +58,125 @@ class _PsychologicalTestScreenState extends State<PsychologicalTestScreen>
     super.dispose();
   }
 
-  void nextQuestion() {
-    if (currentQuestionIndex < widget.quizData.question.length - 1) {
-      setState(() {
-        currentQuestionIndex++;
-        for (int i = 0; i < animationController.length; i++) {
-          animationController[i].reset();
-          Future.delayed(Duration(milliseconds: i * 500),
-              () => animationController[i].forward());
-        }
-      });
-    } else {
-      Navigator.pushNamed(context, '/result');
+  void navigateBasedOnScore(int score) {
+    Result selectedResult = widget.quizData.result[0];
+
+    for (var result in widget.quizData.result) {
+      List<int> scoreRange = List<int>.from(result.scoreRange);
+      if (score >= scoreRange[0] && score <= scoreRange[1]) {
+        selectedResult = result;
+        debugPrint("$score $scoreRange");
+        break;
+      }
     }
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => PsychologicalResultScreen(
+                  result: selectedResult,
+                )));
+  }
+
+  void nextQuestion() {
+    setState(() {
+      currentQuestionIndex++;
+      for (int i = 0; i < animationController.length; i++) {
+        animationController[i].reset();
+        Future.delayed(Duration(milliseconds: i * 300),
+            () => animationController[i].forward());
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+          child: Container(
+        width: double.infinity,
+        alignment: Alignment.center,
+        child: SizedBox(
+          width: DeviceChecker().isMobileDevice
+              ? double.infinity
+              : MediaQuery.of(context).size.width * .7,
           child: Column(
-        children: [
-          Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Center(
-                  child: LinearProgressIndicator(
-                      value: (currentQuestionIndex + 1) /
-                          widget.quizData.question.length),
-                ),
-              )),
-          Expanded(
-              flex: 2,
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Transform.translate(
-                    offset: Offset(animations[0].value, 0),
-                    child: Text(
-                      widget
-                          .quizData.question[currentQuestionIndex].questionText,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .apply(fontWeightDelta: 5),
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Center(
+                      child: LinearProgressIndicator(
+                          value: (currentQuestionIndex + 1) /
+                              widget.quizData.question.length),
                     ),
-                  ),
-                ),
-              )),
-          Expanded(
-              flex: 2,
-              child: SizedBox.expand(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Column(
-                        children: widget.quizData.question[currentQuestionIndex]
-                            .choices.entries
-                            .toList()
-                            .asMap()
-                            .entries
-                            .map((e) => Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Transform.translate(
-                                  offset:
-                                      Offset(animations[e.key + 1].value, 0),
-                                  child: InkWell(
-                                      onTap: () => nextQuestion(),
-                                      customBorder: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(25),
-                                      ),
-                                      child: Ink(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                .5,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Colors.grey.shade200,
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            e.value.key,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium!
-                                                .apply(fontWeightDelta: 3),
-                                          ),
-                                        ),
-                                      )),
-                                )))
-                            .toList(),
+                  )),
+              Expanded(
+                  flex: 2,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Transform.translate(
+                        offset: Offset(animations[0].value, 0),
+                        child: Text(
+                          widget.quizData.question[currentQuestionIndex]
+                              .questionText,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.titleLarge!.apply(
+                                fontWeightDelta: 5,
+                              ),
+                        ),
                       ),
                     ),
-                  ],
-                ),
-              ))
-        ],
+                  )),
+              Expanded(
+                  flex: 2,
+                  child: SizedBox.expand(
+                    child: Column(
+                      children: [
+                        Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10.0),
+                            child: Column(
+                              children: widget
+                                  .quizData
+                                  .question[currentQuestionIndex]
+                                  .choices
+                                  .entries
+                                  .toList()
+                                  .asMap()
+                                  .entries
+                                  .map((e) => Padding(
+                                      padding: const EdgeInsets.only(top: 8.0),
+                                      child: Transform.translate(
+                                          offset: Offset(
+                                              animations[e.key + 1].value, 0),
+                                          child: ChoiceButton(
+                                            answerText: e.value.key,
+                                            onTap: () {
+                                              setState(() {
+                                                totalScore += e.value.value;
+                                              });
+
+                                              if (currentQuestionIndex ==
+                                                  widget.quizData.question
+                                                          .length -
+                                                      1) {
+                                                navigateBasedOnScore(
+                                                    totalScore);
+                                                debugPrint("$totalScore");
+                                              } else {
+                                                nextQuestion();
+                                              }
+                                            },
+                                          ))))
+                                  .toList(),
+                            )),
+                      ],
+                    ),
+                  ))
+            ],
+          ),
+        ),
       )),
     );
   }
