@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:psychologicaltest_flutter_app/Screens/psychological_result.dart';
+import 'package:psychologicaltest_flutter_app/Widgets/animation_progressbar.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/choice_button.dart';
 import 'package:psychologicaltest_flutter_app/Widgets/device_checker.dart';
 import 'package:psychologicaltest_flutter_app/model/PsychologicalTest_model.dart';
@@ -98,19 +99,28 @@ class _PsychologicalTestScreenState extends State<PsychologicalTestScreen>
         child: SizedBox(
           width: DeviceChecker().isMobileDevice
               ? double.infinity
-              : MediaQuery.of(context).size.width * .7,
+              : MediaQuery.of(context).size.width / 2,
           child: Column(
             children: [
               Expanded(
                   flex: 1,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Center(
-                      child: LinearProgressIndicator(
-                          value: (currentQuestionIndex + 1) /
-                              widget.quizData.question.length),
-                    ),
-                  )),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Center(
+                          child: AnimatedProgressBar(
+                              targetValue: currentQuestionIndex + 1,
+                              questionLength: widget.quizData.question.length)
+
+                          // ClipRRect(
+                          //   borderRadius:
+                          //       const BorderRadius.all(Radius.circular(10)),
+                          //   child: LinearProgressIndicator(
+                          //     value: (currentQuestionIndex + 1) /
+                          //         widget.quizData.question.length,
+                          //     backgroundColor: const Color(0xffD6D6D6),
+                          //   ),
+                          // ),
+                          ))),
               Expanded(
                   flex: 2,
                   child: Center(
