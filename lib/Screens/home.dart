@@ -132,7 +132,7 @@ class HomeScreen extends StatelessWidget {
                                             const Divider(),
                                     itemBuilder:
                                         (BuildContext context, int index) {
-                                      var size = 200;
+                                      var size = 300;
                                       return SizedBox(
                                           width: DeviceChecker().isMobileDevice
                                               ? MediaQuery.of(context)
@@ -142,7 +142,7 @@ class HomeScreen extends StatelessWidget {
                                               : 300,
                                           height: DeviceChecker().isMobileDevice
                                               ? 300
-                                              : 100,
+                                              : 300,
                                           // child: Text("data"),
                                           child: TestListCard(
                                               size, context, index));
