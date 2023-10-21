@@ -51,8 +51,7 @@ class QuizSearchDelegate extends SearchDelegate<PsychologicalTestModel> {
   @override
   Widget buildSuggestions(BuildContext context) {
     final suggestionList = quizzes
-        .where(
-            (quiz) => quiz.title.toLowerCase().startsWith(query.toLowerCase()))
+        .where((quiz) => quiz.title.toLowerCase().contains(query.toLowerCase()))
         .toList();
 
     return ListView.builder(
